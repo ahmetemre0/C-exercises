@@ -1,0 +1,122 @@
+#include <stdio.h>
+#include <time.h>
+
+#define MAX_STRING_LENGTH 50
+
+
+void swap(char* first, char* second){
+	*first = *first + *second;
+	*second = *first - *second;
+	*first = *first - *second;
+}
+
+char *inttostring(int input, char* string){
+	int i = 0;
+	do{
+		string[i++] = input%10 + '0';
+	}while((input/=10) > 0);
+	
+	string[i] = '\0';
+	
+	int str_len = 0;
+	
+	for(int i = 0; i < str_len/2; swap(&string[i], string[str_len - i - 1]),i++);
+	
+	return string;
+}
+
+int strlength(char *string){
+	int length = 0;
+	int i = 0;
+	while(string[i] != '\0'){
+		length++;
+		i++;
+	}
+	return length;
+}
+
+char* strcopy(char* source_string, char* destination_string){
+	int source_length = strlength(source_string);
+	
+	for(int i = 0; i < source_length; i++){
+		destination_string[i] = source_string[i];
+	}
+	
+	return destination_string;
+}
+
+char *strconcatenate(char *add_string, char *base_string){
+	int base_length = strlength(base_string);
+	base_string += base_length;
+	return strcopy(add_string,base_string);
+}
+
+char *substring(char *source, char *destination, int start, int size){
+	int source_length = strlength(source);
+	if(start + size <= source_length){
+		source += start;
+		int i = 0
+		for(; i < size; i++){
+			destination[i] = source[i];
+		}
+		
+		destination[i] = 0;
+	}
+	return destination;
+}
+
+void generateCandidateEmails(char *name, char *surname, int year){
+	char candidate1[MAX_STRING_LENGTH] = "";
+	char candidate2[MAX_STRING_LENGTH] = "";
+	char candidate3[MAX_STRING_LENGTH] = "";
+	
+	char ending[] = "@itu.edu.tr";
+	
+	char temp[MAX_STRING_LENGTH] = "";
+	
+	strconcatenate(substring(name, temp, 0, 1),candidate1);
+	strconcatenate(surname,candidate1);
+	strconcatenate(inttostring(year%100, temp),candidate1);
+	strconcatenate(ending,candidate1);
+	
+	strconcatenate(substring(name, temp, 0, 2),candidate2);
+	strconcatenate(substring(surname, temp, 0, 2),candidate2);
+	strconcatenate(inttostring(rand()%1000, temp),candidate2);
+	strconcatenate(ending,candidate2);
+	
+	strconcatenate(surname,candidate3);
+	strconcatenate(name,candidate3);
+	strconcatenate(inttostring(year, temp),candidate3);
+	strconcatenate(ending,candidate3);
+	
+	printf("Email Candidate 1: %s\n", candidate1);
+	printf("Email Candidate 2: %s\n", candidate2);
+	printf("Email Candidate 3: %s\n", candidate3);
+	
+	return 0;
+}
+
+
+
+
+
+
+
+
+
+int main(){
+	srand(time(NULL));
+	char name[MAX_STRING_LENGTH];
+	char surname[MAX_STRING_LENGTH];
+	int year;
+	
+	printf("Enter Your Name:");
+	scanf("%s",name);
+	printf("Enter Your Surname:");
+	scanf("%s",surname);
+	printf("Enter Your Birthyear:");
+	scanf("%d",year);
+	generateCandidateEmails(name,surname,year);
+}
+
+

@@ -1,0 +1,34 @@
+#include <stdio.h>
+#include <time.h>
+#include <string.h>
+
+void substring(char *source,char *destination,int start,int size){
+	//int *p = destination;
+	source+=start;
+	for(int i = 0; i < size; i++){
+		destination = source;
+		destination++;
+		source++;
+	}
+}
+void generatemail(char *name,char *surname, char *year){
+	char *mail1 = NULL;
+	substring(year,mail1,1,2);
+	printf("%s\n",&mail1);
+}
+
+int main(){
+	//srand(time(NULL));
+	char *name = "cihan";
+	char *surname = "ak";
+	char *year = "1993";
+	/*
+	printf("Name: ");
+	scanf("%s",&name);
+	printf("Surname: ");
+	scanf("%s",&surname);
+	printf("Year: ");
+	scanf("%s",&year);
+	*/
+	generatemail(name,surname,year);
+}
