@@ -1,0 +1,34 @@
+fputs (string , file) /dosyaya string koyar
+
+
+fgets (string , count , file) /dosyadan(imlecin bulundugu konumdan itibaren) en fazla count degerinin 1 eksigi kadar boyutta string alir
+
+
+char ch = fgetc (file) /dosyadan (imlecin bulundugu konumdan itibaren) karakter alir
+
+
+fgetpos (file , fpos_t *pos) /imlecin konumunu alir
+
+
+fputc (char , file) /dosyada bulundugun konuma bi karakter ekler
+
+
+fread (pointer , kalip boyutu , kalip sayisi , file) /kalip boyutu ile belirlenen boyutta kalip sayisi kadar kalibi pointerla isaret eder
+
+
+fwrite (pointer , kalip boyutu , kalip sayisi , file) /pointerdaki kalip boyutu ile belirlenen boyutta kalip sayisi kadar kalibi dosyaya yazdirir
+
+
+fseek (file , degisim , orijin) /imlec konumuyla oynamani saglar degisim orijinin etrafinda gerceklesir eger fseek(fp , -5 , SEEK_END) dersen imleci sondan 5 byte onceye koyar
+
+
+fsetpos (file fpos_t *pos) /imlecin konumunu degistirir
+
+
+rename ("eskiisim" , "yeniisim")
+
+
+remove (file)
+
+
+rewind (file) /imleci basa alir 
